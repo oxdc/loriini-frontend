@@ -1,13 +1,14 @@
 import React from 'react';
 import '@elastic/eui/dist/eui_theme_light.css';
 import AppHeader from "./header/header";
-import { EuiPage } from "@elastic/eui";
+import AppBody from "./body/body";
 
 function App() {
   return (
-    <EuiPage id='app'>
+    <div id='app'>
       <AppHeader />
-    </EuiPage>
+      <AppBody />
+    </div>
   );
 }
 
