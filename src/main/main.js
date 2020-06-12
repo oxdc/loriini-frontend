@@ -6,8 +6,11 @@ const url = require('url')
 function createWindow () {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 800,
+    width: 400,
+    minWidth: 400,
     height: 600,
+    frame: false,
+    transparent: true,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
     }
