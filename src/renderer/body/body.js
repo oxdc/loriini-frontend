@@ -1,12 +1,15 @@
 import React from 'react';
-import { EuiPage, EuiPageBody, EuiPageContent } from "@elastic/eui";
+import { EuiPage, EuiPageBody } from "@elastic/eui";
+import './body.scss';
 
 function AppBody() {
   return (
-    <EuiPage style={{position: 'fixed', top: 49, bottom: 2, left: 2, right: 2}}>
+    <EuiPage id='app-body'>
       <EuiPageBody>
-        <EuiPageContent>
-        </EuiPageContent>
+        <div id='app-message'>
+        </div>
+        <div id='app-page'>
+        </div>
       </EuiPageBody>
     </EuiPage>
   );

@@ -19,7 +19,17 @@ code {
 }
 
 html {
-  border: $euiBorderThick !important;
+  position: fixed;
+  height: unset !important;
+  bottom: 10px;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  box-shadow: 0 2px 9px 0 $euiColorMediumShade;
+  border-top: $euiBorderThick !important;
+  border-left: $euiBorderThick !important;
+  border-right: $euiBorderThick !important;
+  border-bottom: 3px solid $euiBorderColor !important;
   border-radius: $euiBorderRadius !important;
   overflow: hidden;
 }

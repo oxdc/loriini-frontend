@@ -6,13 +6,14 @@ const url = require('url')
 function createWindow () {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 400,
-    minWidth: 400,
+    width: 450,
+    minWidth: 450,
     height: 600,
+    minHeight: 70,
     frame: false,
     transparent: true,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
+      nodeIntegration: true
     }
   })
 
