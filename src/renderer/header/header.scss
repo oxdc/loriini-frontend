@@ -4,3 +4,8 @@
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
 }
+
+#window-controller {
+  -webkit-app-region: drag;
+  width: 20px;
+}

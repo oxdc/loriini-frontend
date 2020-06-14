@@ -3,7 +3,7 @@ import '@elastic/eui/dist/eui_theme_light.css';
 import AppHeader from "./header/header";
 import AppBody from "./body/body";
 
-function App() {
+const App = () => {
   return (
     <div id='app'>
       <AppHeader />
@@ -11,5 +11,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;

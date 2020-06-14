@@ -1,5 +1,7 @@
 
-import React, { useState } from 'react';
+import React from 'react';
+import { connect } from "react-redux";
+import { WindowMode, toggleMainWindowMode, pinMainWindow, unpinMainWindow } from "../../store/actions/ui";
 
 import {
   EuiHeader,
@@ -11,50 +13,11 @@ import {
   EuiIcon
 } from '@elastic/eui';
 import './header.scss';
-const remote = window.require('electron').remote;
 
-function AppHeader () {
-  const [windowStatus, setWindowStatus] = useState('minimize');
-  const [pinned, setPinning] = useState(false);
-
-  const win = remote.getCurrentWindow();
-
-  const pin = () => {
-    if (pinned) {
-      win.setAlwaysOnTop(false, 'screen');
-      setPinning(false);
-    } else  {
-      win.setAlwaysOnTop(true, 'screen');
-      setPinning(true);
-    }
-  }
-
-  const resize = () => {
-    let bounds = win.getBounds();
-    let height, width;
-    if (windowStatus === 'minimize') {
-      width = 450;
-      height = 70;
-      setWindowStatus('expand');
-    } else {
-      width = 450;
-      height = 600;
-      setWindowStatus('minimize');
-    }
-    bounds.height = height;
-    bounds.width = width;
-    win.setBounds(bounds, true);
-  };
-
+const AppHeader = ({pinned, min, toggleMode, pin, unpin}) => {
   return (
     <EuiHeader id='app-header'>
-      <EuiHeaderSection
-        grow={false}
-        style={{
-          '-webkit-app-region': 'drag',
-          width: '20px'
-        }}
-      >
+      <EuiHeaderSection id='window-controller' grow={false}>
         <EuiHeaderSectionItem border='none'>
           <EuiIcon type='boxesVertical'/>
         </EuiHeaderSectionItem>
@@ -81,14 +44,37 @@ function AppHeader () {
       </EuiHeaderSection>
       <EuiHeaderSection grow={false}>
         <EuiHeaderSectionItem border='none'>
-          <EuiButtonIcon iconType='arrowDown' />
-          <EuiButtonIcon iconType='arrowUp' />
-          <EuiButtonIcon iconType={pinned ? 'pinFilled' : 'pin'} onClick={pin} />
-          <EuiButtonIcon iconType={windowStatus} onClick={resize} />
+          <EuiButtonIcon
+            iconType='arrowDown'
+            aria-label='next dictionary / page bottom (double click)'
+          />
+          <EuiButtonIcon
+            iconType='arrowUp'
+            aria-label='previous dictionary / page top (double click)'
+          />
+          <EuiButtonIcon
+            iconType={pinned ? 'pinFilled' : 'pin'}
+            aria-label='pin or unpin the main window'
+            onClick={() => pinned ? unpin() : pin()} />
+          <EuiButtonIcon
+            iconType={min ? 'expand' : 'minimize'}
+            aria-label='expand or minimize the main window'
+            onClick={() => toggleMode(min ? WindowMode.MAXIMIZE : WindowMode.MINIMIZE)}/>
         </EuiHeaderSectionItem>
       </EuiHeaderSection>
     </EuiHeader>
   );
 }
 
-export default AppHeader;
+const mapStateToProps = state => ({
+  pinned: state.uiReducer.mainWindow.pinned,
+  min: state.uiReducer.mainWindow.mode === WindowMode.MINIMIZE
+})
+
+const mapDispatchToProps = dispatch => ({
+  toggleMode: (mode, size = null, location = null) => dispatch(toggleMainWindowMode(mode, size, location)),
+  pin: () => dispatch(pinMainWindow()),
+  unpin: () => dispatch(unpinMainWindow())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppHeader);
