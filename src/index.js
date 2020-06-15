@@ -5,6 +5,7 @@ import './index.scss';
 import App from './renderer/App';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from "react-router-dom";
 import rootReducer from './store';
 import bind from "./renderer/controllers/ui";
 import * as serviceWorker from './serviceWorker';
@@ -14,7 +15,9 @@ bind(store)
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root')
 );
