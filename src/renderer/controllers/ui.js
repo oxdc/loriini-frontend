@@ -3,10 +3,10 @@ import { WindowMode } from '../../store/actions/ui';
 const remote = window.require('electron').remote;
 const win = remote.getCurrentWindow();
 
-export default function bind(store) {
+export default function bindUIController(store) {
   store.subscribe(() => {
     let state = store.getState();
-    let uiState = state.uiReducer;
+    let uiState = state.ui;
     let bounds = win.getBounds();
     switch (uiState.mainWindow.mode) {
       case WindowMode.MAXIMIZE:

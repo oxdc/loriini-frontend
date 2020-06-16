@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
-import uiReducer from './reducers/ui-reducer';
+import UIReducer from './reducers/ui-reducer';
+import MessageReducer from './reducers/message-reducers';
 
 export default combineReducers({
-  uiReducer
+  ui: UIReducer,
+  messages: MessageReducer
 });

@@ -7,11 +7,13 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from "react-router-dom";
 import rootReducer from './store';
-import bind from "./renderer/controllers/ui";
+import bindUIController from './renderer/controllers/ui';
+import bindMessageLogger from './renderer/controllers/messages';
 import * as serviceWorker from './serviceWorker';
 
 const store = createStore(rootReducer);
-bind(store)
+bindUIController(store);
+bindMessageLogger(store);
 
 ReactDOM.render(
   <Provider store={store}>

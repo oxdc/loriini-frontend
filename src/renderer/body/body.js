@@ -25,7 +25,7 @@ const AppBody = ({ show }) => {
 }
 
 const mapStateToProps = state => ({
-  show: state.uiReducer.mainWindow.mode === WindowMode.MAXIMIZE
+  show: state.ui.mainWindow.mode === WindowMode.MAXIMIZE
 })
 
 export default connect(mapStateToProps)(AppBody);

@@ -67,8 +67,8 @@ const AppHeader = ({pinned, min, toggleMode, pin, unpin}) => {
 }
 
 const mapStateToProps = state => ({
-  pinned: state.uiReducer.mainWindow.pinned,
-  min: state.uiReducer.mainWindow.mode === WindowMode.MINIMIZE
+  pinned: state.ui.mainWindow.pinned,
+  min: state.ui.mainWindow.mode === WindowMode.MINIMIZE
 })
 
 const mapDispatchToProps = dispatch => ({
