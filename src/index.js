@@ -10,10 +10,13 @@ import rootReducer from './store';
 import bindUIController from './renderer/controllers/ui';
 import bindMessageLogger from './renderer/controllers/messages';
 import * as serviceWorker from './serviceWorker';
+import { addMessage } from "./store/actions/messages";
 
 const store = createStore(rootReducer);
 bindUIController(store);
 bindMessageLogger(store);
+store.dispatch(addMessage('message1', 'hello world', 'info'))
+store.dispatch(addMessage('message2', 'hello world2', 'warning'))
 
 ReactDOM.render(
   <Provider store={store}>
