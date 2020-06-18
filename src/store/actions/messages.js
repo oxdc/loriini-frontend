@@ -2,10 +2,9 @@ export const ADD_MESSAGE = 'ADD_MESSAGE';
 export const DELETE_MESSAGE = 'DELETE_MESSAGE';
 export const DISMISS_MESSAGE = 'DISMISS_MESSAGE';
 
-export const addMessage = (title, message, level, icon = null, color = null, actions = null) => ({
+export const addMessage = (message, level, icon = null, color = null, actions = null) => ({
   type: ADD_MESSAGE,
   payload: {
-    title: title,
     message: message,
     level: level,
     icon: icon,

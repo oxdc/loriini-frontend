@@ -4,7 +4,6 @@ import './body.scss';
 import { connect } from 'react-redux';
 import { WindowMode } from '../../store/actions/ui';
 import { Switch, Route } from 'react-router-dom';
-import MessageBox from "../components/message-box";
 
 const AppBody = ({ show }) => {
   return (
@@ -12,7 +11,6 @@ const AppBody = ({ show }) => {
       <EuiPage id='app-body'>
         <EuiPageBody>
           <div id='app-message'>
-            <MessageBox />
           </div>
           <div id='app-page'>
             <Switch>

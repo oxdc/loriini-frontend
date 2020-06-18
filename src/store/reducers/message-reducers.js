@@ -20,7 +20,9 @@ export const DefaultColors = {
   success: 'success'
 }
 
-const initialState = []
+const initialState = {
+  messages: []
+}
 
 export default function MessageReducer (state = initialState, action) {
   switch (action.type) {
@@ -41,14 +43,27 @@ export default function MessageReducer (state = initialState, action) {
           }
         ]
       }
-      return [
+      return {
         ...state,
-        message
-      ];
+        messages: [
+          ...state.messages,
+          message
+        ]
+      };
     case DELETE_MESSAGE:
-      return state.filter(item => item.id !== action.payload.id);
+      return {
+        ...state,
+        messages: state.messages.filter(
+          item => item.id !== action.payload.id
+        )
+      };
     case DISMISS_MESSAGE:
-      return state.map(item => item.id === action.payload.id ? {...item, isDismissed: true} : item);
+      return {
+        ...state,
+        messages: state.messages.map(
+          item => item.id === action.payload.id ? {...item, isDismissed: true} : item
+        )
+      };
     default:
       return state;
   }
